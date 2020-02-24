@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { App } from '../components/App';
 import Header from '../components/Header';
-import { BurgerBuilder } from '../components/BurgerBuilder';
+import  {Burger} from '../components/Burger';
 import { requireAuth, publicRoute } from '../components/AuthHoc';
 import { Orders } from '../components/Orders';
 import Auth from '../components/Auth';
@@ -16,7 +16,7 @@ export const AppRouter = () => {
         <Header />
         <Switch>
           <Route path='/' exact component={App} />
-          <Route path='/burgerbuilder' component={BurgerBuilder} />
+          <Route path='/burgerbuilder' component={Burger} />
           <Route path='/orders' component={requireAuth(Orders)} />
           <Route path='/auth' component={publicRoute(Auth)} />
         </Switch>
