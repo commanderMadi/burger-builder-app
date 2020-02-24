@@ -34,15 +34,14 @@ export class Auth extends React.Component {
     }
   };
 
-  routeLogic = (url, useremail, password, error) => {
+  routeLogic = (url, useremail, password) => {
     const { auth, history } = this.props;
     auth(url, useremail, password).then(res => {
-      const errorMessage = res.errorObject.response.data.error.message || null;
       if (res.idToken && typeof res.idToken !== 'object') {
         console.log('I am in!');
         history.push('/burgerbuilder');
       } else {
-        this.setState(() => ({ error: errorMessage }));
+        this.setState(() => ({ error: res.errorObject.response.data.error.message }));
       }
     });
   };
