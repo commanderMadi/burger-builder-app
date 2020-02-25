@@ -2,10 +2,11 @@ import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { App } from '../components/App';
 import Header from '../components/Header';
-import  {Burger} from '../components/Burger';
+import  BurgerBuilder from '../components/BurgerBuilder';
 import { requireAuth, publicRoute } from '../components/AuthHoc';
 import { Orders } from '../components/Orders';
 import Auth from '../components/Auth';
+import Checkout from '../components/Checkout';
 import { GlobalStyle } from '../components/styles/GlobalStyle';
 
 export const AppRouter = () => {
@@ -16,8 +17,9 @@ export const AppRouter = () => {
         <Header />
         <Switch>
           <Route path='/' exact component={App} />
-          <Route path='/burgerbuilder' component={Burger} />
+          <Route path='/burgerbuilder' component={BurgerBuilder} />
           <Route path='/orders' component={requireAuth(Orders)} />
+          <Route path='/checkout' component={requireAuth(Checkout)} />
           <Route path='/auth' component={publicRoute(Auth)} />
         </Switch>
       </div>
