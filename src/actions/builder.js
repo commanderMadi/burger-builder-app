@@ -8,4 +8,10 @@ export const removeIngredients = (ingredient, ingredients) => ({
     payload: {[ingredient]: ingredients[ingredient] - 1}
 });
 
+export const resetIngredients = () => ({
+    type: 'RESET_INGREDIENTS',
+});
+
+
+
 
