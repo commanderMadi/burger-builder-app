@@ -1,11 +1,12 @@
 import React from 'react';
-import IngredientsController from './IngredientsController'
+import {SandwichContainer, TopBun, BottomBun} from './styles/Burger';
 
-export const Burger = () => {
+export const Burger = (props) => {
     return (
-        <div>
-            <h1>This is the Burger page container.</h1>
-            <IngredientsController/>
-        </div>
+        <SandwichContainer>
+            <TopBun></TopBun>
+            {props.children}
+            <BottomBun></BottomBun>
+        </SandwichContainer>
     )
 }
