@@ -12,59 +12,58 @@ padding: 20px;
 margin: 2px;
 `;
 
-
 export const SandwichContainer = styled.div`
-display: flex;
-flex-direction: column;
-align-items: center;
-`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
 
 export const TopBun = styled.div`
-${bunWidth};
-${bunHeight};
-${padAndMargin};
-border-top-left-radius: 10px;
-border-top-right-radius: 10px;
-background-image: linear-gradient(to right, #A6926C , #EAD2A3);
-`
+  ${bunWidth};
+  ${bunHeight};
+  ${padAndMargin};
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  background-image: linear-gradient(to right, #a6926c, #ead2a3);
+`;
 
 export const BottomBun = styled.div`
-${bunWidth};
-${bunHeight};
-${padAndMargin};
-border-bottom-left-radius: 10px;
-border-bottom-right-radius: 10px;
-background-image: linear-gradient(to left, #A6926C , #EAD2A3);
-`
+  ${bunWidth};
+  ${bunHeight};
+  ${padAndMargin};
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  background-image: linear-gradient(to left, #a6926c, #ead2a3);
+`;
 
 export const Meat = styled.div`
-${ingredientWidth};
-${ingredientHeight};
-${ingredientBorderRadius};
-${padAndMargin};
-background-image: linear-gradient(#473433 , #522522);
-`
+  ${ingredientWidth};
+  ${ingredientHeight};
+  ${ingredientBorderRadius};
+  ${padAndMargin};
+  background-image: linear-gradient(#473433, #522522);
+`;
 
 export const Salad = styled.div`
-${ingredientWidth};
-${ingredientHeight};
-${ingredientBorderRadius};
-${padAndMargin};
-background-image: linear-gradient(to left, #82D59F , #38F47A);
-`
+  ${ingredientWidth};
+  ${ingredientHeight};
+  padding: 10px;
+  margin: 2px;
+  background-image: linear-gradient(to left, #82d59f, #38f47a);
+`;
 
 export const Cheese = styled.div`
-${ingredientWidth};
-${ingredientHeight};
-${ingredientBorderRadius};
-${padAndMargin};
-background-image: linear-gradient(to right, #F4DD38 , #FFF294);
-`
+  width: 440px;
+  ${ingredientHeight};
+  padding: 10px;
+  margin: 2px;
+  background-image: linear-gradient(to right, #f4dd38, #fff294);
+`;
 
 export const Bacon = styled.div`
-${ingredientWidth};
-${ingredientHeight};
-${ingredientBorderRadius};
-${padAndMargin};
-background-image: linear-gradient(to left, #c25d55 , #f2f2f2);
-`
+  ${ingredientWidth};
+  height: 1px;
+  padding: 8px;
+  margin: 2px;
+  background-image: linear-gradient(to left, #c25d55, #e6295b);
+`;
