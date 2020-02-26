@@ -1,34 +1,65 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import IngredientsController from './IngredientsController';
-import {Burger} from './Burger';
-import {Salad, Cheese, Meat, Bacon} from './styles/Burger';
+import { Burger } from './Burger';
+import Modal from './Modal';
+import { Salad, Cheese, Meat, Bacon } from './styles/Burger';
 
 class BurgerBuilder extends React.Component {
+  state = {
+    isModalShown: false,
+    isCheckoutButtonDisabled: true
+  };
 
-    render () {
-        const { ingredients } = this.props;
-        return (
-            <div>
-            <h1>This is the Burger page container.</h1>
-            <Burger>
-                {ingredients.meat > 0 && <Meat></Meat>}
-                {ingredients.bacon > 0 && <Bacon></Bacon>}
-                {ingredients.salad > 0 && <Salad></Salad>}
-                {ingredients.cheese > 0 && <Cheese></Cheese>}
-                {ingredients.meat > 1 && <Meat></Meat>}
-            </Burger>
-            <IngredientsController/>
-        </div>
-    )
-        
-    }
-}
-
-const mapStateToProps = state => {
-    return {
-      ingredients: state.ingredients
+  componentDidMount() {
+    if (this.props.authenticated) {
+      this.setState(() => ({ isCheckoutButtonDisabled: false }));
     }
   }
 
-export default connect(mapStateToProps)(BurgerBuilder)
+  showModal = () => {
+    this.setState({ isModalShown: true });
+  };
+  handleProceedToCheckout = () => {
+    this.props.history.push('/checkout');
+  };
+  handlecancelCheckout = () => {
+    this.setState({ isModalShown: false });
+  };
+
+  render() {
+    const { ingredients } = this.props;
+    return (
+      <div>
+        <h1>This is the Burger page container.</h1>
+        <Burger>
+          {ingredients.meat > 0 && <Meat />}
+          {ingredients.bacon > 0 && <Bacon />}
+          {ingredients.salad > 0 && <Salad />}
+          {ingredients.cheese > 0 && <Cheese />}
+          {ingredients.meat > 1 && <Meat />}
+        </Burger>
+        <IngredientsController />
+        <Modal
+          isModalShown={this.state.isModalShown}
+          totalPrice={this.props.totalPrice}
+          handleProceedToCheckout={this.handleProceedToCheckout}
+          handlecancelCheckout={this.handlecancelCheckout}
+        />
+        <button disabled={this.state.isCheckoutButtonDisabled} onClick={this.showModal} className='checkout'>
+          Checkout
+        </button>
+      </div>
+    );
+  }
+}
+
+const mapStateToProps = state => {
+  return {
+    ingredients: state.ingredients,
+    totalPrice: state.totalPrice,
+    authenticated: state.auth.idToken
+  };
+};
+
+export default connect(mapStateToProps)(BurgerBuilder);
