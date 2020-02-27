@@ -5,10 +5,10 @@ import { updateTotalPrice, resetTotalPrice } from '../actions/price';
 
 class IngredientsController extends React.Component {
   state = {
-    meatPrice: 5,
-    baconPrice: 3,
-    cheesePrice: 2,
-    saladPrice: 1,
+    meat_price: 5,
+    bacon_price: 3,
+    cheese_price: 2,
+    salad_price: 1,
     isDisabled: true
   };
 
@@ -22,58 +22,39 @@ class IngredientsController extends React.Component {
     }
   }
 
-  addToPrice = itemPrice =>
-    this.setState({ totalPrice: this.props.totalPrice + itemPrice }, () => {
-      this.props.updateTotalPrice(this.state.totalPrice);
-    });
-  subtractFromPrice = itemPrice =>
-    this.setState({ totalPrice: this.props.totalPrice - itemPrice }, () => {
-      this.props.updateTotalPrice(this.state.totalPrice);
-    });
+  addToPrice = (state, ingredientName) => {
+    for (let key in state) {
+      const splitted = key.split('_');
+      if (splitted[0] === ingredientName) {
+        return this.setState({ totalPrice: this.props.totalPrice + state[key] }, () => {
+          this.props.updateTotalPrice(this.state.totalPrice);
+        });
+      }
+    }
+  };
+
+  subtractFromPrice = (state, ingredientName) => {
+    for (let key in state) {
+      const splitted = key.split('_');
+      if (splitted[0] === ingredientName) {
+        return this.setState({ totalPrice: this.props.totalPrice - state[key] }, () => {
+          this.props.updateTotalPrice(this.state.totalPrice);
+        });
+      }
+    }
+  };
 
   increment = (ingredientName, ingredients) => {
     if (this.props.ingredients[ingredientName] < 5) {
       this.props.addIngredients(ingredientName, ingredients);
-
-      switch (ingredientName) {
-        case 'meat':
-          this.addToPrice(this.state.meatPrice);
-          break;
-        case 'bacon':
-          this.addToPrice(this.state.baconPrice);
-          break;
-        case 'cheese':
-          this.addToPrice(this.state.cheesePrice);
-          break;
-        case 'salad':
-          this.addToPrice(this.state.saladPrice);
-          break;
-        default:
-          break;
-      }
+      this.addToPrice(this.state, ingredientName);
     }
   };
 
   decrement = (ingredientName, ingredients) => {
     if (this.props.ingredients[ingredientName] > 0) {
       this.props.removeIngredients(ingredientName, ingredients);
-      switch (ingredientName) {
-        case 'meat':
-          this.subtractFromPrice(this.state.meatPrice);
-          break;
-        case 'bacon':
-          this.subtractFromPrice(this.state.baconPrice);
-
-          break;
-        case 'cheese':
-          this.subtractFromPrice(this.state.cheesePrice);
-          break;
-        case 'salad':
-          this.subtractFromPrice(this.state.saladPrice);
-          break;
-        default:
-          break;
-      }
+      this.subtractFromPrice(this.state, ingredientName);
     }
   };
 
