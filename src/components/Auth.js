@@ -1,8 +1,8 @@
 import React from 'react';
-import { AuthenticationForm } from '../components/styles/AuthenticationForm';
+import { Form } from '../styles/components/Form';
 import { connect } from 'react-redux';
 import { auth } from '../actions/auth';
-import { FormWrapper } from '../components/styles/FormWrapper';
+import { FormWrapper } from '../styles/components/FormWrapper';
 
 export class Auth extends React.Component {
   state = {
@@ -14,7 +14,7 @@ export class Auth extends React.Component {
     return (
       <FormWrapper>
         {this.state.error && <p>{this.state.error}</p>}
-        <AuthenticationForm onSubmit={this.handleSubmit}>
+        <Form onSubmit={this.handleSubmit}>
           <label htmlFor='useremail'>Email</label>
           <input type='email' />
           <label htmlFor='password'>Password</label>
@@ -23,7 +23,7 @@ export class Auth extends React.Component {
           <button type='button' onClick={this.changeSrc}>
             Switch to {this.state.nextSrc} Page.
           </button>
-        </AuthenticationForm>
+        </Form>
       </FormWrapper>
     );
   }
@@ -39,7 +39,7 @@ export class Auth extends React.Component {
     auth(url, useremail, password).then(res => {
       if (res.idToken && typeof res.idToken !== 'object') {
         console.log('I am in!');
-        history.push('/burgerbuilder');
+        history.push('/');
       } else {
         this.setState(() => ({ error: res.errorObject.response.data.error.message }));
       }

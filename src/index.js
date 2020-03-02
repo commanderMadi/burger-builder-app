@@ -8,6 +8,7 @@ import thunk from 'redux-thunk';
 import throttle from 'lodash/throttle';
 import { rootReducer } from './reducers/rootReducer';
 import { saveState, loadState } from './storage';
+import './styles/styles.scss';
 
 const persistedState = loadState();
 

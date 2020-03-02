@@ -4,7 +4,7 @@ import Modal from 'react-modal';
 const CheckoutModal = props => (
   <Modal
     isOpen={!!props.isModalShown}
-    contentLabel='Selected Option'
+    contentLabel='Checkout Confirmation'
     onRequestClose={props.handleModalClear}
     ariaHideApp={false}
     closeTimeoutMS={200}
